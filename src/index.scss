@@ -1,6 +1,20 @@
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: "YNWA", sans-serif;
+}
+
+main {
+    padding: 40px;
 }
 
 h1 {
