@@ -14,6 +14,11 @@ const App = () => {
                 <br />
                 <br />
                 <Button type="button" modificator="white">White button</Button>
+                <br />
+                <br />
+                <Button type="button" modificator="primary" ico="add">Button with icon</Button>
+                <h2>Small button</h2>
+                <Button type="button" ico="add" label="Label text"></Button>
             </main>
         </>
     );
