@@ -15,14 +15,24 @@ const Button = ({ type, modificator, ico, label, children }) => {
         );
     };
 
+    const renderLabel = () => {
+        if (!label) {
+            return null;
+        };
+
+        return (
+            <span className="button__label">{label}</span>
+        );
+    };
+
     return (
         <button
             type={type}
             className={`button${modificator ? modificatorClass : ''}`}
-            data-label={label}
         >
             { renderIcon() }
             {children}
+            { renderLabel() }
         </button>
     );
 };

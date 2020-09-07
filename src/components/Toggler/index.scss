@@ -1,4 +1,4 @@
-.button {
+.toggler {
     position: relative;
 
     display: inline-flex;
@@ -26,31 +26,32 @@
         box-shadow: inset 0px 4px 12px rgba(0, 0, 0, .2);
     }
 
-    &:focus {
+    &:focus-within {
         outline: 2px solid var(--color-primary-500);
         outline-offset: 2px;
         background-color: var(--color-primary-100);
     }
+
+    &[aria-pressed='true'] {
+        color: var(--color-white);
+        background-color: var(--color-primary-500);
+
+        &:hover {
+            background-color: var(--color-primary-600);
+        }
+    
+        &:focus {
+            background-color: var(--color-primary-600);
+        }
+    }
 }
 
-.button_white {
+.toggler_white {
     background-color: var(--color-white);
 }
 
-.button_primary {
-    color: var(--color-white);
-    background-color: var(--color-primary-500);
-
-    &:hover {
-        background-color: var(--color-primary-600);
-    }
-
-    &:focus {
-        background-color: var(--color-primary-600);
-    }
-}
-
-.button__label {
+.toggler__label {
+    content: attr(data-label);
     position: absolute;
     top: calc(100% + 4px);
     left: 50%;
@@ -69,18 +70,18 @@
     transform: translateX(-50%) translateY(-8px) scale(.5);
     transition: opacity 200ms, transform 200ms;
 
-    .button:hover &,
-    .button:focus & {
+    .toggler:hover &,
+    .toggler:focus & {
         opacity: 1;
         transform: translateX(-50%);
     }
 }
 
-.button__ico {
+.toggler__ico {
     margin-left: -4px;
     margin-right: 8px;
 }
 
-.button__ico_single {
+.toggler__ico_single {
     margin-right: -4px;
 }
