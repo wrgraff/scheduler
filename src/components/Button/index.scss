@@ -45,6 +45,10 @@
         background-color: var(--color-primary-600);
     }
 
+    &:active {
+        background-color: var(--color-primary-700);
+    }
+
     &:focus {
         background-color: var(--color-primary-600);
     }
