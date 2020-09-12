@@ -1,0 +1,35 @@
+.session-list {
+    padding: 0;
+
+    background-color: var(--color-primary-100);
+    border-radius: 6px;
+    list-style: none;
+}
+
+.session-list__item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+
+    &:nth-child(even) {
+        background-color: var(--color-primary-200);
+    }
+}
+
+.session-list__text {
+    flex-grow: 1;
+}
+
+.session-list__heading {
+    margin: 0 0 8px;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.session-list__time {
+    margin: 0;
+
+    font-size: 14px;
+}

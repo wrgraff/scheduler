@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Button from './components/Button';
 import Toggler from './components/Toggler';
 import Indicator from './components/Indicator';
+import SessionItem from './components/SessionItem';
 
 const App = () => {
     return (
@@ -34,6 +35,13 @@ const App = () => {
                     <Indicator isActive="true" ico="message">Имеется отметка</Indicator>
                     <Indicator isActive="true" ico="monetization">Занятие платное</Indicator>
                     <Indicator ico="warning">Занятие не отменено</Indicator>
+                </ul>
+
+                <h3>Session items</h3>
+                <ul className="session-list">
+                    <SessionItem />
+                    <SessionItem />
+                    <SessionItem />
                 </ul>
             </main>
         </>

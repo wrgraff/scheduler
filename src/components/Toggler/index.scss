@@ -60,8 +60,9 @@
     position: absolute;
     top: calc(100% + 4px);
     left: 50%;
+    z-index: 2;
 
-    padding: 3px 6px 5px;
+    padding: 4px 6px;
 
     color: var(--color-white);
     background-color: var(--color-black);
