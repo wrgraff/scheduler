@@ -1,0 +1,30 @@
+.day {
+    display: flex;
+
+    border: 3px solid var(--color-primary-100);
+    border-radius: 5px;
+}
+
+.day__content {
+    flex-grow: 1;
+    padding: 32px;
+}
+
+.day__session-list {
+    margin: 0;
+}
+
+.day__actions {
+    display: flex;
+    flex-direction: column;
+    width: 268px;
+    padding: 32px;
+
+    background-color: var(--color-primary-100);
+}
+
+.day__buttons {
+    margin-top: auto;
+    display: grid;
+    grid-gap: 16px;
+}

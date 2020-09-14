@@ -38,4 +38,8 @@
     <symbol id="warning" viewBox="0 0 24 24">
         <path fill="currentColor" d="M1 21H23L12 2L1 21ZM13 18H11V16H13V18ZM13 14H11V10H13V14Z"/>
     </symbol>
+
+    <symbol id="delete" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z"/>
+    </symbol>
 </svg>
