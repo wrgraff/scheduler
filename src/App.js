@@ -1,7 +1,9 @@
 import React from 'react';
 import Nav from './components/Nav';
-import Day from './components/Day';
-import SessionItem from './components/SessionItem';
+import DaysList from './components/DaysList';
+import DayAdd from './components/DayAdd';
+import { Router, Route } from 'react-router-dom';
+import history from './history';
 
 const menuItems = [
     {
@@ -40,19 +42,14 @@ const menuItems = [
 
 const App = () => {
     return (
-        <>
+        <Router history={history}>
             <main>
-                <Day>
-                    <ul className="day__session-list session-list">
-                        <SessionItem />
-                        <SessionItem />
-                        <SessionItem />
-                    </ul>
-                </Day>
+                <Route path="/" exact component={DaysList} />
+                <Route path="/add" exact component={DayAdd} />
 
                 <Nav items={menuItems} activeItem='04-08-20'></Nav>
             </main>
-        </>
+        </Router>
     );
 };
 

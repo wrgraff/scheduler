@@ -18,6 +18,7 @@ const SessionItem = () => {
                 <Indicator isActive="true" ico="monetization">Занятие платное</Indicator>
                 <Indicator ico="warning">Занятие не отменено</Indicator>
             </ul>
+
             <Button type="button" ico="copy" modificator="white" label="Дублировать"></Button>
             <Button type="button" ico="edit" modificator="white">Редактировать</Button>
         </li>

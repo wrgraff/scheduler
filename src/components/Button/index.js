@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const Button = ({ type, modificator, ico, label, children }) => {
+const Button = ({ type, modificator, ico, label, children, className }) => {
     const modificatorClass = ` button_${modificator}`;
 
     const renderIcon = () => {
@@ -28,7 +28,7 @@ const Button = ({ type, modificator, ico, label, children }) => {
     return (
         <button
             type={type}
-            className={`button${modificator ? modificatorClass : ''}`}
+            className={`button${modificator ? modificatorClass : ''} ${className}`}
         >
             { renderIcon() }
             {children}
