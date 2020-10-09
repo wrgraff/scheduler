@@ -1,0 +1,97 @@
+.date {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 5px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    transition: background-color 200ms;
+
+    &::before {
+        content: '';
+
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        margin-right: 12px;
+
+        background-color: var(--color-white);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 002 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'/%3E%3C/svg%3E");
+        border-radius: 5px;
+    }
+
+    &:hover {
+        background-color: var(--color-white);
+    }
+
+    &:active {
+        border-color: var(--color-primary-500);
+        box-shadow: inset 0px 4px 12px rgba(0, 0, 0, .2);
+    }
+
+    &:focus-within {
+        outline: 2px solid var(--color-primary-500);
+        outline-offset: 2px;
+        background-color: var(--color-primary-100);
+    }
+}
+
+.date__text {
+    white-space: nowrap;
+}
+
+.date__day {
+    margin-left: 8px;
+    padding: 5px;
+
+    color: var(--color-white);
+    background-color: var(--color-black);
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+.date__day_monday::before {
+    content: 'ПН';
+}
+
+.date__day_tuesday::before {
+    content: 'ВТ';
+}
+
+.date__day_wednesday::before {
+    content: 'СР';
+}
+
+.date__day_thursday::before {
+    content: 'ЧТ';
+}
+
+.date__day_friday::before {
+    content: 'ПТ';
+}
+
+.date__day_saturday::before {
+    content: 'СБ';
+}
+
+.date__day_sunday::before {
+    content: 'ВС';
+}
+
+.date__input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    opacity: 0;
+}

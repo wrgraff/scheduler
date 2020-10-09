@@ -2,6 +2,7 @@ import './index.scss';
 import React from 'react';
 import Button from '../Button';
 import Toggler from '../Toggler';
+import DayDate from '../DayDate';
 
 const Day = ({ children }) => {
     return (
@@ -10,7 +11,7 @@ const Day = ({ children }) => {
                 { children }
             </div>
             <div className="day__actions">
-                <span>Date</span>
+                <DayDate date="2020-10-05" />
 
                 <div className="day__buttons">
                     <Button modificator="white" type="button" ico="delete">Удалить</Button>
