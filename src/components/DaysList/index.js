@@ -5,7 +5,7 @@ import { fetchSessions, fetchDays, fetchSessionTypes, fetchTrainers, fetchHalls 
 import SessionItem from '../SessionItem';
 import Day from '../Day';
 import Nav from '../Nav';
-import { Link } from 'react-router-dom';
+import ButtonLink from '../ButtonLink';
 
 const DaysList = () => {
     const sessionsByDate = useSelector(state => _.groupBy(state.sessions, 'date'));
@@ -24,14 +24,14 @@ const DaysList = () => {
     }, [dispatch]);
 
     const renderDays = () => {
-        return days.map(({date}) => {
+        return days.map(({date, isActive}) => {
             return (
-                <Day key={date} date={date} id={date}>
+                <Day key={date} id={date} date={date} isActive={isActive}>
                     <ul className="day__session-list session-list">
                         {renderSessions(sessionsByDate[date])}
                     </ul>
 
-                    <Link to="/add" className="button button_primary">Добавить занятие</Link>
+                    <ButtonLink href="/add" modificator="primary" ico="add">Добавить занятие</ButtonLink>
                 </Day>
             );
         })

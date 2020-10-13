@@ -4,9 +4,9 @@ import Button from '../Button';
 import Toggler from '../Toggler';
 import DayDate from '../DayDate';
 
-const Day = ({ date, id, children }) => {
+const Day = ({ id, date, isActive, children }) => {
     return (
-        <section className="day" id={ id }>
+        <section className="day" id={id}>
             <div className="day__content">
                 { children }
             </div>
@@ -16,7 +16,7 @@ const Day = ({ date, id, children }) => {
                 <div className="day__buttons">
                     <Button modificator="white" type="button" ico="delete">Удалить</Button>
                     <Button modificator="white" type="button" ico="copy">Дублировать</Button>
-                    <Toggler modificator="white" pressed="true">Опубликован</Toggler>
+                    <Toggler modificator="white" pressed={isActive}>{isActive ? 'Опубликован' : 'Опубликовать'}</Toggler>
                 </div>
             </div>
         </section>
