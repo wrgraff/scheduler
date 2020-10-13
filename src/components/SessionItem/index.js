@@ -4,14 +4,14 @@ import Toggler from '../Toggler';
 import Indicator from '../Indicator';
 import Button from '../Button';
 
-const SessionItem = ({session}) => {
-    const {isActive, type, time, labels} = session;
+const SessionItem = ({session, sessionType}) => {
+    const {isActive, time, labels} = session;
 
     return (
         <li className="session-list__item">
             <Toggler modificator="white" label={ isActive ? 'Опубликовано' : 'Опубликовать' } pressed={ isActive }></Toggler>
             <div className="session-list__text">
-                <h3 className="session-list__heading">{ type }</h3>
+                <h3 className="session-list__heading">{ sessionType }</h3>
                 <p className="session-list__time">{ time.start } – { time.end }</p>
             </div>
 
