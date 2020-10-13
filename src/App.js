@@ -8,7 +8,7 @@ const App = () => {
     return (
         <Router history={history}>
             <main>
-                <Route path="/" exact component={DaysList} />
+                <Route path="/" component={DaysList} />
                 <Route path="/add" exact component={DayAdd} />
             </main>
         </Router>
