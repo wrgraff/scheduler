@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 
 const Toggler = ({ modificator, pressed, label, children }) => {
+    const [isPressed, setIsPressed] = useState(pressed);
+
     const modificatorClass = ` toggler_${modificator}`;
 
     const renderIcon = () => {
-        const useTag = `<use xlink:href="/img/ico/sprite.svg#toggle-${pressed ? 'on' : 'off'}" />`;
+        const useTag = `<use xlink:href="/img/ico/sprite.svg#toggle-${isPressed ? 'on' : 'off'}" />`;
         return (
             <svg width="24" height="24" className={`toggler__ico ${children ? '' : 'toggler__ico_single'}`} dangerouslySetInnerHTML={{ __html: useTag }} />
         );
@@ -24,8 +26,9 @@ const Toggler = ({ modificator, pressed, label, children }) => {
     return (
         <button
             type="button"
-            aria-pressed={pressed}
+            aria-pressed={isPressed}
             className={`toggler${modificator ? modificatorClass : ''}`}
+            onClick={() => setIsPressed(!isPressed)}
         >
             { renderIcon() }
             {children}

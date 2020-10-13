@@ -4,14 +4,14 @@ import Button from '../Button';
 import Toggler from '../Toggler';
 import DayDate from '../DayDate';
 
-const Day = ({ children }) => {
+const Day = ({ date, id, children }) => {
     return (
-        <section className="day">
+        <section className="day" id={ id }>
             <div className="day__content">
                 { children }
             </div>
             <div className="day__actions">
-                <DayDate date="2020-10-05" />
+                <DayDate date={date} />
 
                 <div className="day__buttons">
                     <Button modificator="white" type="button" ico="delete">Удалить</Button>

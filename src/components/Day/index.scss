@@ -3,6 +3,10 @@
 
     border: 3px solid var(--color-primary-100);
     border-radius: 5px;
+
+    & + & {
+        margin-top: 40px;
+    }
 }
 
 .day__content {
@@ -11,7 +15,7 @@
 }
 
 .day__session-list {
-    margin: 0;
+    margin: 0 0 20px;
 }
 
 .day__actions {
@@ -21,6 +25,10 @@
     padding: 32px;
 
     background-color: var(--color-primary-100);
+}
+
+.day__date {
+    margin-bottom: 48px;
 }
 
 .day__buttons {

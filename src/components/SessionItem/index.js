@@ -4,19 +4,21 @@ import Toggler from '../Toggler';
 import Indicator from '../Indicator';
 import Button from '../Button';
 
-const SessionItem = () => {
+const SessionItem = ({session}) => {
+    const {isActive, type, time, labels} = session;
+
     return (
         <li className="session-list__item">
-            <Toggler modificator="white" label="Не опубликовано"></Toggler>
+            <Toggler modificator="white" label={ isActive ? 'Опубликовано' : 'Опубликовать' } pressed={ isActive }></Toggler>
             <div className="session-list__text">
-                <h3 className="session-list__heading">Super Sculpt</h3>
-                <p className="session-list__time">11:30 – 12:30</p>
+                <h3 className="session-list__heading">{ type }</h3>
+                <p className="session-list__time">{ time.start } – { time.end }</p>
             </div>
 
             <ul className="indicators">
-                <Indicator isActive="true" ico="message">Имеется отметка</Indicator>
-                <Indicator isActive="true" ico="monetization">Занятие платное</Indicator>
-                <Indicator ico="warning">Занятие не отменено</Indicator>
+                <Indicator isActive={ labels.special } ico="message">{ labels.special ? labels.special : 'Отметок нет' }</Indicator>
+                <Indicator isActive={ labels.isPaid } ico="monetization">{ labels.isPaid ? 'Занятие платное' : 'Занятие бесплатное'}</Indicator>
+                <Indicator isActive={ labels.isCancelled } ico="warning">{ labels.isCancelled ? 'Занятие отменено' : 'Занятие не отменено'}</Indicator>
             </ul>
 
             <Button type="button" ico="copy" modificator="white" label="Дублировать"></Button>
