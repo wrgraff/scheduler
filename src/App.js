@@ -1,6 +1,6 @@
 import React from 'react';
 import DaysList from './components/DaysList';
-import DayAdd from './components/DayAdd';
+import SessionAdd from './components/SessionAdd';
 import { Router, Route } from 'react-router-dom';
 import history from './history';
 
@@ -9,7 +9,7 @@ const App = () => {
         <Router history={history}>
             <main>
                 <Route path="/" component={DaysList} />
-                <Route path="/add" exact component={DayAdd} />
+                <Route path="/add-session" exact component={SessionAdd} />
             </main>
         </Router>
     );

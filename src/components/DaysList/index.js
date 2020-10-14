@@ -31,7 +31,7 @@ const DaysList = () => {
                         {renderSessions(sessionsByDate[date])}
                     </ul>
 
-                    <ButtonLink href="/add" modificator="primary" ico="add">Добавить занятие</ButtonLink>
+                    <ButtonLink href="/add-session" modificator="primary" ico="add">Добавить занятие</ButtonLink>
                 </Day>
             );
         })

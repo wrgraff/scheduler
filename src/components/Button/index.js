@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const Button = ({ type, modificator, ico, label, children, className }) => {
+const Button = ({ type, modificator, ico, label, children, className, onClick }) => {
     const modificatorClass = ` button_${modificator}`;
 
     const renderIcon = () => {
@@ -29,6 +29,7 @@ const Button = ({ type, modificator, ico, label, children, className }) => {
         <button
             type={type}
             className={`button${modificator ? modificatorClass : ''} ${className}`}
+            onClick={ onClick }
         >
             { renderIcon() }
             {children}

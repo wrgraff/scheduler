@@ -17,10 +17,6 @@ const Modal = props => {
                     { props.content }
                 </div>
 
-                <footer className="modal__footer">
-                    { props.actions }
-                </footer>
-
                 <Button
                     type="button"
                     ico="close"
@@ -28,8 +24,7 @@ const Modal = props => {
                     label="Закрыть окно"
                     className="modal__close"
                     onClick={ props.onDismiss }
-                >
-                </Button>
+                />
             </div>
         </section>,
         document.querySelector('#modal')

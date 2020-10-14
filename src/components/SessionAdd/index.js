@@ -1,16 +1,17 @@
 import React from 'react';
 import history from '../../history';
 import Modal from '../Modal';
+import SessionForm from '../SessionForm';
 
-const DayAdd = () => {
+const SessionAdd = () => {
     return (
         <Modal
-            heading="Добавить день"
-            content={`Hi`}
+            heading="Добавить занятие"
+            content={<SessionForm />}
             actions={`Bye`}
             onDismiss={ () => history.push(`/`) }
         />
     );
 };
 
-export default DayAdd;
+export default SessionAdd;
