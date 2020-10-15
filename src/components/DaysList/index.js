@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSessions, fetchDays, fetchSessionTypes, fetchTrainers, fetchHalls } from '../../actions';
+import { fetchSessions, fetchDays, fetchSessionTypes } from '../../actions';
 import SessionItem from '../SessionItem';
 import Day from '../Day';
 import Nav from '../Nav';
@@ -10,17 +10,13 @@ import ButtonLink from '../ButtonLink';
 const DaysList = () => {
     const sessionsByDate = useSelector(state => _.groupBy(state.sessions, 'date'));
     const days = useSelector(state => Object.values(state.days));
-    const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
-    // const trainers = useSelector(state => Object.values(state.trainers));
-    // const halls = useSelector(state => Object.values(state.halls));
+    const sessionTypes = useSelector(state => _.mapKeys(state.sessionTypes, 'id'));
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchSessions());
-        dispatch(fetchDays());
-        dispatch(fetchSessionTypes());
-        dispatch(fetchTrainers());
-        dispatch(fetchHalls());
+        fetchSessions(dispatch);
+        fetchDays(dispatch);
+        fetchSessionTypes(dispatch);
     }, [dispatch]);
 
     const renderDays = () => {
@@ -46,11 +42,19 @@ const DaysList = () => {
             );
         };
 
+        if (!Object.keys(sessionTypes).length) {
+            return (
+                <li className="session-list__item">
+                    <p className="session-list__text">Загрузка...</p>
+                </li>
+            );
+        }
+
         return sessions.map(session => {
             return (
                 <SessionItem
                     session={session}
-                    sessionType={sessionTypes[session.type].name}
+                    sessionType={sessionTypes[session.sessionType].name}
                     key={session.id}
                 />
             );
@@ -59,7 +63,7 @@ const DaysList = () => {
 
     return (
         <React.Fragment>
-            <Nav items={ Object.keys(sessionsByDate) } activeItem=""></Nav>
+            {/* <Nav items={ Object.keys(sessionsByDate) } activeItem=""></Nav> */}
             { renderDays() }
         </React.Fragment>
     );
