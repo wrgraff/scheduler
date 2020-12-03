@@ -12,11 +12,14 @@ const SessionForm = () => {
     const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
     const trainers = useSelector(state => Object.values(state.trainers));
     const halls = useSelector(state => Object.values(state.halls));
+    const activeDate = useSelector(state => state.activeDate);
     const dispatch = useDispatch();
     const { register, handleSubmit, control, errors } = useForm();
     const onSubmit = data => {
         addSession(dispatch, data);
     };
+
+    console.log( activeDate)
 
     useEffect(() => {
         fetchSessionTypes(dispatch);
@@ -26,6 +29,7 @@ const SessionForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">
+            <h1>{}</h1>
             <fieldset className="form__fieldset">
                 <legend className="visually-hidden">Параметры занятия</legend>
 
@@ -82,7 +86,6 @@ const SessionForm = () => {
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
                         />
                     </li>
-
                     <li className="form__item">
                         <FormInput
                             name="date"
@@ -90,6 +93,8 @@ const SessionForm = () => {
                             type="date"
                             register={register}
                             required={true}
+                            value={activeDate || ''}
+                            errors={errors.sessionType && 'Это поле обязательно для заполнения'}
                         />
                     </li>
                 </ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Button = ({ href, modificator, ico, label, children, className }) => {
+const Button = ({ href, modificator, ico, label, children, className, onClick }) => {
     const modificatorClass = ` button_${modificator}`;
 
     const renderIcon = () => {
@@ -29,6 +29,7 @@ const Button = ({ href, modificator, ico, label, children, className }) => {
         <Link
             to={href}
             className={`button${modificator ? modificatorClass : ''} ${className}`}
+            onClick={onClick}
         >
             { renderIcon() }
             {children}

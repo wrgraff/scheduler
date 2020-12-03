@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSessions, fetchDays, fetchSessionTypes } from '../../actions';
+import { fetchSessions, fetchDays, fetchSessionTypes, selectActiveDate } from '../../actions';
 import SessionItem from '../SessionItem';
 import Day from '../Day';
 import Nav from '../Nav';
@@ -27,7 +27,7 @@ const DaysList = () => {
                         {renderSessions(sessionsByDate[date])}
                     </ul>
 
-                    <ButtonLink href="/add-session" modificator="primary" ico="add">Добавить занятие</ButtonLink>
+                    <ButtonLink href="/add-session" modificator="primary" ico="add" onClick={ () => selectActiveDate(dispatch, date) }>Добавить занятие</ButtonLink>
                 </Day>
             );
         })
@@ -63,7 +63,7 @@ const DaysList = () => {
 
     return (
         <React.Fragment>
-            {/* <Nav items={ Object.keys(sessionsByDate) } activeItem=""></Nav> */}
+            {/* <Nav items={ days.map(day => day.date) } activeItem=""></Nav> */}
             { renderDays() }
         </React.Fragment>
     );

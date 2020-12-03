@@ -5,6 +5,7 @@ import sessionTypesReducer from './sessionTypesReducer';
 import daysReducer from './daysReducer';
 import trainersReducer from './trainersReducer';
 import hallsReducer from './hallsReducer';
+import activeDateReducer from './activeDateReducer';
 
 export default combineReducers({
 	form: formReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
 	sessionTypes: sessionTypesReducer,
 	days: daysReducer,
 	trainers: trainersReducer,
-	halls: hallsReducer
+	halls: hallsReducer,
+	activeDate: activeDateReducer
 });

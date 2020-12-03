@@ -44,6 +44,14 @@ export const fetchDays = async dispatch => {
     });
 };
 
+export const selectActiveDate = (dispatch, activeDate) => {
+    console.log('Selected date: ' + activeDate)
+    dispatch({
+        type: 'SELECT_ACTIVE_DATE',
+        payload: activeDate
+    });
+};
+
 export const fetchSessionTypes = async dispatch => {
     const response = await dataBase.get('/sessionTypes');
 
