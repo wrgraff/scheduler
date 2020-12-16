@@ -3,18 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '../Button';
 
-const Modal = props => {
+const Modal = ({heading, onDismiss, children}) => {
     return ReactDOM.createPortal(
-        <section className="modal" onClick={ props.onDismiss }>
+        <section className="modal" onClick={ onDismiss }>
             <div className="modal__container" onClick={ evt => evt.stopPropagation() }>
                 <header className="modal__header">
                     <h2>
-                        { props.heading }
+                        { heading }
                     </h2>
                 </header>
 
                 <div className="modal__body">
-                    { props.content }
+                    { children }
                 </div>
 
                 <Button
@@ -23,7 +23,7 @@ const Modal = props => {
                     modificator="white"
                     label="Закрыть окно"
                     className="modal__close"
-                    onClick={ props.onDismiss }
+                    onClick={ onDismiss }
                 />
             </div>
         </section>,

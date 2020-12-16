@@ -10,6 +10,15 @@ export const fetchSessions = async dispatch => {
     });
 };
 
+export const fetchSession = async (dispatch, id) => {
+    const response = await dataBase.get(`/sessions/${id}`);
+
+    dispatch({
+        type: 'FETCH_SESSION',
+        payload: response.data
+    });
+};
+
 export const addSession = async (dispatch, formValues) => {
     const { isActive, date, sessionType, trainer, hall, timeStart, timeEnd, special, isPaid, isCancelled } = formValues;
     const response = await dataBase.post('/sessions', {
@@ -35,6 +44,31 @@ export const addSession = async (dispatch, formValues) => {
 	history.push('/');
 };
 
+export const editSession = async (dispatch, id, formValues) => {
+    const { isActive, date, sessionType, trainer, hall, timeStart, timeEnd, special, isPaid, isCancelled } = formValues;
+    const response = await dataBase.patch(`/sessions/${id}`, {
+        isActive,
+        date,
+        sessionType,
+        trainer,
+        hall,
+        time: {
+            start: timeStart,
+            end: timeEnd
+        },
+        labels: {
+            special, isPaid, isCancelled
+        }
+    });
+
+	dispatch({
+		type: 'EDIT_SESSION',
+		payload: response.data
+	});
+	
+	history.push('/');
+};
+
 export const fetchDays = async dispatch => {
     const response = await dataBase.get('/days');
 
@@ -45,7 +79,6 @@ export const fetchDays = async dispatch => {
 };
 
 export const selectActiveDate = (dispatch, activeDate) => {
-    console.log('Selected date: ' + activeDate)
     dispatch({
         type: 'SELECT_ACTIVE_DATE',
         payload: activeDate

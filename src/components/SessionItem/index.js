@@ -3,9 +3,10 @@ import './index.scss';
 import Toggler from '../Toggler';
 import Indicator from '../Indicator';
 import Button from '../Button';
+import ButtonLink from '../ButtonLink';
 
 const SessionItem = ({session, sessionType}) => {
-    const {isActive, time, labels} = session;
+    const {id, isActive, time, labels} = session;
 
     return (
         <li className="session-list__item">
@@ -22,7 +23,7 @@ const SessionItem = ({session, sessionType}) => {
             </ul>
 
             <Button type="button" ico="copy" modificator="white" label="Дублировать"></Button>
-            <Button type="button" ico="edit" modificator="white">Редактировать</Button>
+            <ButtonLink href={`/edit-session/${id}`} modificator="white" ico="edit">Редактировать</ButtonLink>
         </li>
     );
 };

@@ -8,18 +8,28 @@ import FormSelect from '../FormSelect';
 import FormInput from '../FormInput';
 import FormCheckbox from '../FormCheckbox';
 
-const SessionForm = () => {
+const SessionForm = ({initialValues}) => {
     const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
     const trainers = useSelector(state => Object.values(state.trainers));
     const halls = useSelector(state => Object.values(state.halls));
     const activeDate = useSelector(state => state.activeDate);
+    const values = {
+        date: initialValues ? initialValues.date : activeDate,
+        isActive: initialValues ? initialValues.isActive : true,
+        sessionType: initialValues ? parseInt(initialValues.sessionType) : null,
+        trainer: initialValues ? parseInt(initialValues.trainer) : null,
+        hall: initialValues ? parseInt(initialValues.hall) : null,
+        timeStart: initialValues ? initialValues.time.start : '',
+        timeEnd: initialValues ? initialValues.time.end : '',
+        special: initialValues ? initialValues.labels.special : '',
+        isPaid: initialValues ? initialValues.labels.isPaid : false,
+        isCancelled: initialValues ? initialValues.labels.isCancelled : false
+    };
     const dispatch = useDispatch();
     const { register, handleSubmit, control, errors } = useForm();
     const onSubmit = data => {
         addSession(dispatch, data);
     };
-
-    console.log( activeDate)
 
     useEffect(() => {
         fetchSessionTypes(dispatch);
@@ -29,7 +39,6 @@ const SessionForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="form">
-            <h1>{}</h1>
             <fieldset className="form__fieldset">
                 <legend className="visually-hidden">Параметры занятия</legend>
 
@@ -39,6 +48,7 @@ const SessionForm = () => {
                             name="sessionType"
                             label="Тип занятия"
                             options={sessionTypes}
+                            defaultValue={values.sessionType}
                             register={register}
                             required={true}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
@@ -50,6 +60,7 @@ const SessionForm = () => {
                             name="trainer"
                             label="Тренер"
                             options={trainers}
+                            defaultValue={values.trainer}
                             register={register}
                             required={true}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
@@ -61,6 +72,7 @@ const SessionForm = () => {
                             name="hall"
                             label="Зал"
                             options={halls}
+                            defaultValue={values.hall}
                             register={register}
                             required={true}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
@@ -72,6 +84,7 @@ const SessionForm = () => {
                             name="timeStart"
                             label="Время начала"
                             type="time"
+                            defaultValue={values.timeStart}
                             register={register}
                             required={true}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
@@ -81,6 +94,7 @@ const SessionForm = () => {
                             name="timeEnd"
                             label="Время окончания"
                             type="time"
+                            defaultValue={values.timeEnd}
                             register={register}
                             required={true}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
@@ -91,9 +105,9 @@ const SessionForm = () => {
                             name="date"
                             label="Дата"
                             type="date"
+                            defaultValue={values.date}
                             register={register}
                             required={true}
-                            value={activeDate || ''}
                             errors={errors.sessionType && 'Это поле обязательно для заполнения'}
                         />
                     </li>
@@ -109,9 +123,10 @@ const SessionForm = () => {
                             name="special"
                             label="Отметки"
                             type="text"
+                            defaultValue={values.special}
                             register={register}
                             required={false}
-                            placeholder="Введите пометки"
+                            placeholder="Введите отметки"
                         />
                     </li>
 
@@ -119,7 +134,7 @@ const SessionForm = () => {
                         <Controller
                             name="isPaid"
                             control={control}
-                            defaultValue={false}
+                            defaultValue={values.isPaid}
                             render={props =>
                                 <FormCheckbox
                                     onChange={evt => props.onChange(evt.target.checked)}
@@ -134,7 +149,7 @@ const SessionForm = () => {
                         <Controller
                             name="isCancelled"
                             control={control}
-                            defaultValue={false}
+                            defaultValue={values.isCancelled}
                             render={props =>
                                 <FormCheckbox
                                     onChange={evt => props.onChange(evt.target.checked)}
@@ -151,7 +166,7 @@ const SessionForm = () => {
                 <Controller
                     name="isActive"
                     control={control}
-                    defaultValue={true}
+                    defaultValue={values.isActive}
                     render={props =>
                         <FormCheckbox
                             onChange={evt => props.onChange(evt.target.checked)}

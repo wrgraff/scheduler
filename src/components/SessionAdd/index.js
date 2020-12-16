@@ -7,10 +7,10 @@ const SessionAdd = () => {
     return (
         <Modal
             heading="Добавить занятие"
-            content={<SessionForm />}
-            actions={`Bye`}
             onDismiss={ () => history.push(`/`) }
-        />
+        >
+            <SessionForm />
+        </Modal>
     );
 };
 
