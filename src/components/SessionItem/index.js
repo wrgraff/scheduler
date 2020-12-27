@@ -23,7 +23,7 @@ const SessionItem = ({session, sessionType}) => {
             </ul>
 
             <Button type="button" ico="copy" modificator="white" label="Дублировать"></Button>
-            <ButtonLink href={`/edit-session/${id}`} modificator="white" ico="edit">Редактировать</ButtonLink>
+            <ButtonLink href={`/sessions/edit/${id}`} modificator="white" ico="edit">Редактировать</ButtonLink>
         </li>
     );
 };

@@ -69,6 +69,17 @@ export const editSession = async (dispatch, id, formValues) => {
 	history.push('/');
 };
 
+export const deleteSession = async (dispatch, id) => {
+    const response = await dataBase.delete(`/sessions/${id}`);
+
+    dispatch({
+        type: 'DELETE_SESSION',
+        payload: response.data
+    });
+
+	history.push('/');
+};
+
 export const fetchDays = async dispatch => {
     const response = await dataBase.get('/days');
 
