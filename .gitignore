@@ -36,6 +36,7 @@
 
 # production
 /build
+/server/*.json
 /.idea
 /node_modules
 package-lock.json
