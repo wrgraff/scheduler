@@ -6,6 +6,7 @@ export default (state = {}, action) => {
             return { ...state, ..._.mapKeys(action.payload, 'id')};
 
         case 'ADD_SESSION':
+        case 'EDIT_SESSION':
             return { ...state, [action.payload.id]: action.payload};
 
         default:

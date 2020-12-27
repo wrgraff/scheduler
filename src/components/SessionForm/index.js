@@ -1,14 +1,14 @@
 import './index.scss'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSessionTypes, fetchTrainers, fetchHalls, addSession } from '../../actions';
+import { fetchSessionTypes, fetchTrainers, fetchHalls } from '../../actions';
 import { useForm, Controller } from 'react-hook-form';
 import Button from '../Button';
 import FormSelect from '../FormSelect';
 import FormInput from '../FormInput';
 import FormCheckbox from '../FormCheckbox';
 
-const SessionForm = ({initialValues}) => {
+const SessionForm = ({initialValues, onSubmit}) => {
     const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
     const trainers = useSelector(state => Object.values(state.trainers));
     const halls = useSelector(state => Object.values(state.halls));
@@ -27,9 +27,6 @@ const SessionForm = ({initialValues}) => {
     };
     const dispatch = useDispatch();
     const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = data => {
-        addSession(dispatch, data);
-    };
 
     useEffect(() => {
         fetchSessionTypes(dispatch);
