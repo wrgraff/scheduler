@@ -1,5 +1,7 @@
 import React from 'react';
 import './index.scss';
+import { editSession } from '../../actions';
+import { useDispatch } from 'react-redux';
 import Toggler from '../Toggler';
 import Indicator from '../Indicator';
 import Button from '../Button';
@@ -7,10 +9,18 @@ import ButtonLink from '../ButtonLink';
 
 const SessionItem = ({session, sessionType}) => {
     const {id, isActive, time, labels} = session;
+    const dispatch = useDispatch();
+
+    const onStatusToggle = () => {
+        editSession(dispatch, id, {
+            isActive: !isActive
+        });
+    };
 
     return (
         <li className="session-list__item">
-            <Toggler modificator="white" label={ isActive ? 'Опубликовано' : 'Опубликовать' } pressed={ isActive }></Toggler>
+            <Toggler modificator="white" label={ isActive ? 'Опубликовано' : 'Опубликовать' } pressed={ isActive } onClick={ onStatusToggle }></Toggler>
+
             <div className="session-list__text">
                 <h3 className="session-list__heading">{ sessionType }</h3>
                 <p className="session-list__time">{ time.start } – { time.end }</p>

@@ -45,21 +45,25 @@ export const addSession = async (dispatch, formValues) => {
 };
 
 export const editSession = async (dispatch, id, formValues) => {
-    const { isActive, date, sessionType, trainer, hall, timeStart, timeEnd, special, isPaid, isCancelled } = formValues;
-    const response = await dataBase.patch(`/sessions/${id}`, {
-        isActive,
-        date,
-        sessionType,
-        trainer,
-        hall,
-        time: {
-            start: timeStart,
-            end: timeEnd
-        },
-        labels: {
-            special, isPaid, isCancelled
+    const values = Object.entries(formValues).reduce((result, [key, value]) => {
+        if (key === 'timeStart') {
+            if (!result.time) result.time = {};
+            result.time.start = value;
+        } else if (key === 'timeEnd') {
+            if (!result.time) result.time = {};
+            result.time.end = value;
+        } else if (key === 'special' || key === 'isPaid' || key === 'isCancelled') {
+            if (!result.labels) result.labels = {};
+            result.labels[key] = value;
+        } else {
+            result[key] = value;
         }
-    });
+ 
+        return result;
+    }, {})
+    
+
+    const response = await dataBase.patch(`/sessions/${id}`, values);
 
 	dispatch({
 		type: 'EDIT_SESSION',
