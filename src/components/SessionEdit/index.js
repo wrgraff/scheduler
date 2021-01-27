@@ -19,7 +19,7 @@ const SessionEdit = ({match}) => {
         return (
             <React.Fragment>
                 <ButtonLink href={`/sessions/delete/${match.params.id}`} ico="delete" className="form__button">Удалить</ButtonLink>
-                <Button type="submit" modificator="primary" className="form__button">Отправить</Button>
+                <Button type="submit" modificator="primary" className="form__button">Сохранить</Button>
             </React.Fragment>
         );
     };

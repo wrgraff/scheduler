@@ -7,7 +7,7 @@ import FormSelect from '../FormSelect';
 import FormInput from '../FormInput';
 import FormCheckbox from '../FormCheckbox';
 
-const SessionForm = ({initialValues, onSubmit, renderButtons}) => {
+const SessionForm = ({initialValues, onSubmit, renderButtons, isAdd}) => {
     const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
     const trainers = useSelector(state => Object.values(state.trainers));
     const halls = useSelector(state => Object.values(state.halls));
@@ -167,7 +167,7 @@ const SessionForm = ({initialValues, onSubmit, renderButtons}) => {
                         <FormCheckbox
                             onChange={evt => props.onChange(evt.target.checked)}
                             checked={props.value}
-                            label="Опубликовать"
+                            label={isAdd ? 'Опубликовать' : 'Опубликовано'}
                             className="form__button"
                         />
                     }
