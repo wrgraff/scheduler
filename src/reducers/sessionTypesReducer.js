@@ -5,6 +5,13 @@ export default (state = {}, action) => {
         case 'FETCH_SESSION_TYPES':
             return { ...state, ..._.mapKeys(action.payload, 'id')};
 
+        case 'ADD_SESSION_TYPE':
+        case 'EDIT_SESSION_TYPE':
+            return { ...state, [action.payload.id]: action.payload};
+
+        case 'DELETE_SESSION_TYPE':
+            return _.omit(state, action.payload);
+        
         default:
             return state;
     };

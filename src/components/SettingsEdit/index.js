@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTrainers, fetchSessionTypes, fetchHalls, addTrainer, deleteTrainer, editTrainer } from '../../actions';
+import {
+    fetchTrainers,
+    addTrainer,
+    deleteTrainer,
+    editTrainer,
+    fetchSessionTypes,
+    addSessionType,
+    deleteSessionType,
+    editSessionType,
+    fetchHalls,
+    addHall,
+    deleteHall,
+    editHall
+} from '../../actions';
 import './index.scss';
 import history from '../../history';
 import Modal from '../Modal';
@@ -32,8 +45,24 @@ const SettingsEdit = ({match}) => {
                 <SettingsItem
                     id={item.id}
                     initialValue={item.name}
-                    onSave={(name) => editTrainer(dispatch, item.id, name)}
-                    onDelete={() => deleteTrainer(dispatch, item.id)}
+                    onSave={(name) => {
+                        if (listType === 'trainers') {
+                            editTrainer(dispatch, item.id, name)
+                        } else if (listType === 'sessionTypes') {
+                            editSessionType(dispatch, item.id, name)
+                        } else if (listType === 'halls') {
+                            editHall(dispatch, item.id, name)
+                        }
+                    }}
+                    onDelete={() => {
+                        if (listType === 'trainers') {
+                            deleteTrainer(dispatch, item.id);
+                        } else if (listType === 'sessionTypes') {
+                            deleteSessionType(dispatch, item.id);
+                        } else if (listType === 'halls') {
+                            deleteHall(dispatch, item.id);
+                        }
+                    }}
                 />
             </li>
         ));
@@ -41,8 +70,14 @@ const SettingsEdit = ({match}) => {
 
     const onSubmit = (evt) => {
         evt.preventDefault();
-        console.log(newItem); 
-        addTrainer(dispatch, newItem);
+
+        if (listType === 'trainers') {
+            addTrainer(dispatch, newItem);
+        } else if (listType === 'sessionTypes') {
+            addSessionType(dispatch, newItem);
+        } else if (listType === 'halls') {
+            addHall(dispatch, newItem);
+        }
     };
 
     return (

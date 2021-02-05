@@ -10,7 +10,7 @@ const SettingsItem = ({id, initialValue, onSave, onDelete}) => {
     }
 
     return (
-        <label className="field">
+        <label className="field" style={{ display: 'flex' }}>
             <span className="field__text">ID {id}</span>
 
             <input

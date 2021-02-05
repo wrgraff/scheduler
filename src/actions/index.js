@@ -109,6 +109,37 @@ export const fetchSessionTypes = async dispatch => {
     });
 };
 
+export const addSessionType = async (dispatch, sessionType) => {
+    const response = await dataBase.post('/sessionTypes', {
+        name: sessionType
+    });
+
+    dispatch({
+        type: 'ADD_SESSION_TYPE',
+        payload: response.data
+    });
+};
+
+export const editSessionType = async (dispatch, id, sessionType) => {
+    const response = await dataBase.patch(`/sessionTypes/${id}`, {
+        name: sessionType
+    });
+
+    dispatch({
+        type: 'EDIT_SESSION_TYPE',
+        payload: response.data
+    });
+};
+
+export const deleteSessionType = async (dispatch, id) => {
+    dataBase.delete(`/sessionTypes/${id}`);
+
+    dispatch({
+        type: 'DELETE_SESSION_TYPE',
+        payload: id
+    });
+};
+
 export const fetchTrainers = async dispatch => {
     const response = await dataBase.get('/trainers');
 
@@ -155,5 +186,36 @@ export const fetchHalls = async dispatch => {
     dispatch({
         type: 'FETCH_HALLS',
         payload: response.data
+    });
+};
+
+export const addHall = async (dispatch, hall) => {
+    const response = await dataBase.post('/halls', {
+        name: hall
+    });
+
+    dispatch({
+        type: 'ADD_HALL',
+        payload: response.data
+    });
+};
+
+export const editHall = async (dispatch, id, hall) => {
+    const response = await dataBase.patch(`/halls/${id}`, {
+        name: hall
+    });
+
+    dispatch({
+        type: 'EDIT_HALL',
+        payload: response.data
+    });
+};
+
+export const deleteHall = async (dispatch, id) => {
+    dataBase.delete(`/halls/${id}`);
+
+    dispatch({
+        type: 'DELETE_HALL',
+        payload: id
     });
 };
