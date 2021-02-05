@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchTrainers, fetchSessionTypes, fetchHalls, addTrainer, deleteTrainer } from '../../actions';
+import { fetchTrainers, fetchSessionTypes, fetchHalls, addTrainer, deleteTrainer, editTrainer } from '../../actions';
 import './index.scss';
 import history from '../../history';
 import Modal from '../Modal';
 import ButtonLink from '../ButtonLink';
 import Button from '../Button';
+import SettingsItem from '../SettingsItem';
 
 const SettingsEdit = ({match}) => {
     const listType = match.params.list;
@@ -28,9 +29,12 @@ const SettingsEdit = ({match}) => {
     const renderList = (list) => {
         return list.map(item => (
             <li key={item.id}>
-                {item.id}: <input value={item.name} />
-                <Button ico="done" />
-                <Button ico="delete" onClick={() => deleteTrainer(dispatch, item.id)} />
+                <SettingsItem
+                    id={item.id}
+                    initialValue={item.name}
+                    onSave={(name) => editTrainer(dispatch, item.id, name)}
+                    onDelete={() => deleteTrainer(dispatch, item.id)}
+                />
             </li>
         ));
     };

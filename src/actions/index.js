@@ -129,6 +129,17 @@ export const addTrainer = async (dispatch, trainer) => {
     });
 };
 
+export const editTrainer = async (dispatch, id, trainer) => {
+    const response = await dataBase.patch(`/trainers/${id}`, {
+        name: trainer
+    });
+
+    dispatch({
+        type: 'EDIT_TRAINER',
+        payload: response.data
+    });
+};
+
 export const deleteTrainer = async (dispatch, id) => {
     dataBase.delete(`/trainers/${id}`);
 
