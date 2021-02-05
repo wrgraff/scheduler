@@ -118,6 +118,26 @@ export const fetchTrainers = async dispatch => {
     });
 };
 
+export const addTrainer = async (dispatch, trainer) => {
+    const response = await dataBase.post('/trainers', {
+        name: trainer
+    });
+
+    dispatch({
+        type: 'ADD_TRAINER',
+        payload: response.data
+    });
+};
+
+export const deleteTrainer = async (dispatch, id) => {
+    dataBase.delete(`/trainers/${id}`);
+
+    dispatch({
+        type: 'DELETE_TRAINER',
+        payload: id
+    });
+};
+
 export const fetchHalls = async dispatch => {
     const response = await dataBase.get('/halls');
 
