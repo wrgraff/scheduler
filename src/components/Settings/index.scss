@@ -1,0 +1,12 @@
+.settings-list {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.settings-list__item {
+    & + & {
+        margin-top: 8px;
+    }
+}

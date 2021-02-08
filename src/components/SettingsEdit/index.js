@@ -41,7 +41,7 @@ const SettingsEdit = ({match}) => {
 
     const renderList = (list) => {
         return list.map(item => (
-            <li key={item.id}>
+            <li key={item.id} className="settings-fields__item">
                 <SettingsItem
                     id={item.id}
                     initialValue={item.name}
@@ -85,20 +85,21 @@ const SettingsEdit = ({match}) => {
             heading="Настройки"
             onDismiss={ () => history.push(`/`) }
         >
-            <ul>{renderList(list)}</ul>
+            <ul className="settings-fields">{renderList(list)}</ul>
 
-            <form onSubmit={onSubmit}>
-                <label className="field">
-                    <span className="field__text">Значение</span>
+            <form onSubmit={onSubmit} className="add-form">
+                <label className="field add-form__field">
+                    <span className="field__text">Новый элемент</span>
 
                     <input
                         type="text"
                         className="field__input"
                         value={newItem}
+                        placeholder="Значение"
                         onChange={evt => setNewItem(evt.target.value)}
                     />
                 </label>
-                <Button type="submit">Добавить</Button>
+                <Button type="submit" modificator="primary" className="add-form__button">Добавить</Button>
             </form>
 
             <ButtonLink href="/settings">Вернуться</ButtonLink>

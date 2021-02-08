@@ -10,18 +10,20 @@ const SettingsItem = ({id, initialValue, onSave, onDelete}) => {
     }
 
     return (
-        <label className="field" style={{ display: 'flex' }}>
-            <span className="field__text">ID {id}</span>
+        <React.Fragment>
+            <label className="field settings-fields__field">
+                <span className="field__text">ID {id}</span>
 
-            <input
-                type="text"
-                className="field__input"
-                value={value}
-                onChange={onInputChange}
-            />
-            <Button ico="done" onClick={() => onSave(value)} />
-            <Button ico="delete" onClick={onDelete} />
-        </label>
+                <input
+                    type="text"
+                    className="field__input"
+                    value={value}
+                    onChange={onInputChange}
+                />
+            </label>
+            <Button ico="done" onClick={() => onSave(value)} modificator="primary" className="settings-fields__button" />
+            <Button ico="delete" onClick={onDelete} className="settings-fields__button" />
+        </React.Fragment>
     );
 };
 

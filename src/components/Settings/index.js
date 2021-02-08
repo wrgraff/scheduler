@@ -10,15 +10,15 @@ const Settings = () => {
             heading="Настройки"
             onDismiss={ () => history.push(`/`) }
         >
-            <ul>
-                <li>
-                    <ButtonLink href="/settings/edit/trainers">Тренеры</ButtonLink>
+            <ul className="settings-list">
+                <li className="settings-list__item">
+                    <ButtonLink href="/settings/edit/trainers" className="settings-list__link">Тренеры</ButtonLink>
                 </li>
-                <li>
-                    <ButtonLink href="/settings/edit/sessionTypes">Типы занятий</ButtonLink>
+                <li className="settings-list__item">
+                    <ButtonLink href="/settings/edit/sessionTypes" className="settings-list__link">Типы занятий</ButtonLink>
                 </li>
-                <li>
-                    <ButtonLink href="/settings/edit/halls">Залы</ButtonLink>
+                <li className="settings-list__item">
+                    <ButtonLink href="/settings/edit/halls" className="settings-list__link">Залы</ButtonLink>
                 </li>
             </ul>
         </Modal>
