@@ -19,8 +19,15 @@ const DaysList = () => {
         fetchSessionTypes(dispatch);
     }, [dispatch]);
 
+    const sortDays = (dayA, dayB) => {
+        const msA = new Date(dayA.date);
+        const msB = new Date(dayB.date);
+
+        return msB - msA;
+    };
+
     const renderDays = () => {
-        return days.map(({date, isActive}) => {
+        return days.sort(sortDays).map(({date, isActive}) => {
             return (
                 <Day key={date} id={date} date={date} isActive={isActive}>
                     <ul className="day__session-list session-list">
@@ -63,7 +70,7 @@ const DaysList = () => {
 
     return (
         <React.Fragment>
-            {/* <Nav items={ days.map(day => day.date) } activeItem=""></Nav> */}
+            <Nav items={ days.sort(sortDays).map(day => day.date) }></Nav>
             { renderDays() }
         </React.Fragment>
     );
