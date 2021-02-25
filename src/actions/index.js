@@ -93,6 +93,20 @@ export const fetchDays = async dispatch => {
     });
 };
 
+export const addDay = async (dispatch, data) => {
+    const response = await dataBase.post('/days', {
+        date: data.date,
+        isActive: false
+    });
+
+    dispatch({
+        type: 'ADD_DAY',
+        payload: response.data
+    });
+    
+	history.push('/');
+};
+
 export const selectActiveDate = (dispatch, activeDate) => {
     dispatch({
         type: 'SELECT_ACTIVE_DATE',

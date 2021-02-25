@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.scss';
-import Button from '../Button';
 import ButtonLink from '../ButtonLink';
 
 const Header = () => {
@@ -9,8 +8,7 @@ const Header = () => {
             <h1 className="header__heading">Редактирование расписания занятий</h1>
             <div className="header__buttons">
                 <ButtonLink href="/settings" modificator="white" ico="settings">Настройки</ButtonLink>
-
-                <Button type="button" modificator="primary">Добавить день</Button>
+                <ButtonLink href="/days/add" modificator="primary">Добавить день</ButtonLink>
             </div>
         </header>
     );
