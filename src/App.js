@@ -2,6 +2,7 @@ import React from 'react';
 import DaysList from './components/DaysList';
 import SessionAdd from './components/SessionAdd';
 import SessionEdit from './components/SessionEdit';
+import SessionDelete from './components/SessionDelete';
 import { Router, Route } from 'react-router-dom';
 import history from './history';
 
@@ -10,8 +11,9 @@ const App = () => {
         <Router history={history}>
             <main>
                 <Route path="/" component={DaysList} />
-                <Route path="/add-session" exact component={SessionAdd} />
-                <Route path="/edit-session/:id" exact component={SessionEdit} />
+                <Route path="/sessions/add" exact component={SessionAdd} />
+                <Route path="/sessions/edit/:id" exact component={SessionEdit} />
+                <Route path="/sessions/delete/:id" exact component={SessionDelete} />
             </main>
         </Router>
     );

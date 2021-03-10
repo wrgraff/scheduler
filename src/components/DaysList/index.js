@@ -27,7 +27,7 @@ const DaysList = () => {
                         {renderSessions(sessionsByDate[date])}
                     </ul>
 
-                    <ButtonLink href="/add-session" modificator="primary" ico="add" onClick={ () => selectActiveDate(dispatch, date) }>Добавить занятие</ButtonLink>
+                    <ButtonLink href="/sessions/add" modificator="primary" ico="add" onClick={ () => selectActiveDate(dispatch, date) }>Добавить занятие</ButtonLink>
                 </Day>
             );
         })

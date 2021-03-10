@@ -1,14 +1,13 @@
 import './index.scss'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSessionTypes, fetchTrainers, fetchHalls, addSession } from '../../actions';
+import { fetchSessionTypes, fetchTrainers, fetchHalls } from '../../actions';
 import { useForm, Controller } from 'react-hook-form';
-import Button from '../Button';
 import FormSelect from '../FormSelect';
 import FormInput from '../FormInput';
 import FormCheckbox from '../FormCheckbox';
 
-const SessionForm = ({initialValues}) => {
+const SessionForm = ({initialValues, onSubmit, renderButtons, isAdd}) => {
     const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
     const trainers = useSelector(state => Object.values(state.trainers));
     const halls = useSelector(state => Object.values(state.halls));
@@ -27,9 +26,6 @@ const SessionForm = ({initialValues}) => {
     };
     const dispatch = useDispatch();
     const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = data => {
-        addSession(dispatch, data);
-    };
 
     useEffect(() => {
         fetchSessionTypes(dispatch);
@@ -171,14 +167,13 @@ const SessionForm = ({initialValues}) => {
                         <FormCheckbox
                             onChange={evt => props.onChange(evt.target.checked)}
                             checked={props.value}
-                            label="Опубликовать"
+                            label={isAdd ? 'Опубликовать' : 'Опубликовано'}
                             className="form__button"
                         />
                     }
                 />
 
-                <Button type="submit" ico="delete" className="form__button">Удалить</Button>
-                <Button type="submit" modificator="primary" className="form__button">Отправить</Button>
+                { renderButtons() }
             </div>
         </form>
     );
