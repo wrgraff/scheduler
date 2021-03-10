@@ -20,10 +20,17 @@ const DaysList = () => {
     }, [dispatch]);
 
     const sortDays = (dayA, dayB) => {
-        const msA = new Date(dayA.date);
-        const msB = new Date(dayB.date);
+        const a = new Date(dayA.date);
+        const b = new Date(dayB.date);
 
-        return msB - msA;
+        return b - a;
+    };
+
+    const sortSessions = (sessionA, sessionB) => {
+        const a = sessionA.time.start || '0';
+        const b = sessionB.time.start || '0';
+
+        return a.localeCompare(b);
     };
 
     const renderDays = () => {
@@ -57,7 +64,7 @@ const DaysList = () => {
             );
         }
 
-        return sessions.map(session => {
+        return sessions.sort(sortSessions).map(session => {
             return (
                 <SessionItem
                     session={session}
