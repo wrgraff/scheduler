@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { editSession } from '../../actions';
+import { editSession, addSession } from '../../actions';
 import { useDispatch } from 'react-redux';
 import Toggler from '../Toggler';
 import Indicator from '../Indicator';
@@ -15,6 +15,23 @@ const SessionItem = ({session, sessionType}) => {
         editSession(dispatch, id, {
             isActive: !isActive
         });
+    };
+
+    const onDuplicate = () => {
+        const newSession = {
+            isActive: false,
+            date: session.date,
+            sessionType: session.sessionType,
+            trainer: session.trainer,
+            hall: session.hall,
+            timeStart: session.time.start,
+            timeEnd: session.time.end,
+            special: session.labels.special,
+            isPaid: session.labels.isPaid,
+            isCancelled: session.labels.isCancelled
+        };
+
+        addSession(dispatch, newSession);
     };
 
     return (
@@ -32,7 +49,7 @@ const SessionItem = ({session, sessionType}) => {
                 <Indicator isActive={ labels.isCancelled } ico="warning">{ labels.isCancelled ? 'Занятие отменено' : 'Занятие не отменено'}</Indicator>
             </ul>
 
-            <Button type="button" ico="copy" modificator="white" label="Дублировать"></Button>
+            <Button type="button" ico="copy" modificator="white" label="Дублировать" onClick={onDuplicate}></Button>
             <ButtonLink href={`/sessions/edit/${id}`} modificator="white" ico="edit">Редактировать</ButtonLink>
         </li>
     );
