@@ -5,6 +5,9 @@ export default (state = {}, action) => {
         case 'FETCH_DAYS':
             return { ...state, ..._.mapKeys(action.payload, 'id')};
 
+        case 'ADD_DAY':
+            return { ...state, [action.payload.id]: action.payload};
+
         default:
             return state;
     };

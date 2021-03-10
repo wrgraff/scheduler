@@ -93,6 +93,20 @@ export const fetchDays = async dispatch => {
     });
 };
 
+export const addDay = async (dispatch, data) => {
+    const response = await dataBase.post('/days', {
+        date: data.date,
+        isActive: false
+    });
+
+    dispatch({
+        type: 'ADD_DAY',
+        payload: response.data
+    });
+    
+	history.push('/');
+};
+
 export const selectActiveDate = (dispatch, activeDate) => {
     dispatch({
         type: 'SELECT_ACTIVE_DATE',
@@ -109,6 +123,37 @@ export const fetchSessionTypes = async dispatch => {
     });
 };
 
+export const addSessionType = async (dispatch, sessionType) => {
+    const response = await dataBase.post('/sessionTypes', {
+        name: sessionType
+    });
+
+    dispatch({
+        type: 'ADD_SESSION_TYPE',
+        payload: response.data
+    });
+};
+
+export const editSessionType = async (dispatch, id, sessionType) => {
+    const response = await dataBase.patch(`/sessionTypes/${id}`, {
+        name: sessionType
+    });
+
+    dispatch({
+        type: 'EDIT_SESSION_TYPE',
+        payload: response.data
+    });
+};
+
+export const deleteSessionType = async (dispatch, id) => {
+    dataBase.delete(`/sessionTypes/${id}`);
+
+    dispatch({
+        type: 'DELETE_SESSION_TYPE',
+        payload: id
+    });
+};
+
 export const fetchTrainers = async dispatch => {
     const response = await dataBase.get('/trainers');
 
@@ -118,11 +163,73 @@ export const fetchTrainers = async dispatch => {
     });
 };
 
+export const addTrainer = async (dispatch, trainer) => {
+    const response = await dataBase.post('/trainers', {
+        name: trainer
+    });
+
+    dispatch({
+        type: 'ADD_TRAINER',
+        payload: response.data
+    });
+};
+
+export const editTrainer = async (dispatch, id, trainer) => {
+    const response = await dataBase.patch(`/trainers/${id}`, {
+        name: trainer
+    });
+
+    dispatch({
+        type: 'EDIT_TRAINER',
+        payload: response.data
+    });
+};
+
+export const deleteTrainer = async (dispatch, id) => {
+    dataBase.delete(`/trainers/${id}`);
+
+    dispatch({
+        type: 'DELETE_TRAINER',
+        payload: id
+    });
+};
+
 export const fetchHalls = async dispatch => {
     const response = await dataBase.get('/halls');
 
     dispatch({
         type: 'FETCH_HALLS',
         payload: response.data
+    });
+};
+
+export const addHall = async (dispatch, hall) => {
+    const response = await dataBase.post('/halls', {
+        name: hall
+    });
+
+    dispatch({
+        type: 'ADD_HALL',
+        payload: response.data
+    });
+};
+
+export const editHall = async (dispatch, id, hall) => {
+    const response = await dataBase.patch(`/halls/${id}`, {
+        name: hall
+    });
+
+    dispatch({
+        type: 'EDIT_HALL',
+        payload: response.data
+    });
+};
+
+export const deleteHall = async (dispatch, id) => {
+    dataBase.delete(`/halls/${id}`);
+
+    dispatch({
+        type: 'DELETE_HALL',
+        payload: id
     });
 };
