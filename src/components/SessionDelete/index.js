@@ -8,7 +8,7 @@ import Button from '../Button';
 
 const SessionEdit = ({match}) => {
     const session = useSelector(state => state.sessions[match.params.id]);
-    const sessionTypes = useSelector(state => Object.values(state.sessionTypes));
+    const sessionTypes = useSelector(state => state.sessionTypes);
     const dispatch = useDispatch();
 
     useEffect(() => {
