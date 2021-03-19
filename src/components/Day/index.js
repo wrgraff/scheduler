@@ -2,7 +2,7 @@ import './index.scss';
 import React from 'react';
 import { editDay } from '../../actions';
 import { useDispatch } from 'react-redux';
-import Button from '../Button';
+import ButtonLink from '../ButtonLink';
 import Toggler from '../Toggler';
 import DayDate from '../DayDate';
 
@@ -25,7 +25,7 @@ const Day = ({ id, date, isActive, children }) => {
                 <DayDate date={date} />
 
                 <div className="day__buttons">
-                    <Button modificator="white" type="button" ico="delete">Удалить</Button>
+                    <ButtonLink modificator="white" href={`/days/delete/${id}`} ico="delete">Удалить</ButtonLink>
                     {/* <Button modificator="white" type="button" ico="copy">Дублировать</Button> */}
                     <Toggler modificator="white" pressed={ isActive } onClick={ onStatusToggle }>
                         {isActive ? 'Опубликован' : 'Опубликовать'}

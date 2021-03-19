@@ -116,6 +116,15 @@ export const editDay = async (dispatch, id, data) => {
     });
 };
 
+export const deleteDay = async (dispatch, id) => {
+    dataBase.delete(`/days/${id}`);
+
+    dispatch({
+        type: 'DELETE_DAY',
+        payload: id
+    });
+};
+
 export const selectActiveDate = (dispatch, activeDate) => {
     dispatch({
         type: 'SELECT_ACTIVE_DATE',

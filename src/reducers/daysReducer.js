@@ -9,6 +9,9 @@ export default (state = {}, action) => {
         case 'EDIT_DAY':
             return { ...state, [action.payload.id]: action.payload};
 
+        case 'DELETE_DAY':
+            return _.omit(state, action.payload);
+
         default:
             return state;
     };
