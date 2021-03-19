@@ -107,6 +107,15 @@ export const addDay = async (dispatch, data) => {
 	history.push('/');
 };
 
+export const editDay = async (dispatch, id, data) => {
+    const response = await dataBase.patch(`/days/${id}`, data);
+
+    dispatch({
+        type: 'EDIT_DAY',
+        payload: response.data
+    });
+};
+
 export const selectActiveDate = (dispatch, activeDate) => {
     dispatch({
         type: 'SELECT_ACTIVE_DATE',

@@ -27,9 +27,9 @@ const DaysList = () => {
     };
 
     const renderDays = () => {
-        return days.sort(sortDays).map(({date, isActive}) => {
+        return days.sort(sortDays).map(({id, date, isActive}) => {
             return (
-                <Day key={date} id={date} date={date} isActive={isActive}>
+                <Day key={date} id={id} date={date} isActive={isActive}>
                     <ul className="day__session-list session-list">
                         {renderSessions(sessionsByDate[date])}
                     </ul>
